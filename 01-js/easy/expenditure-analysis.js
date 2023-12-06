@@ -6,7 +6,39 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  const total = {};
+  const result=[];
+  transactions.forEach(transactions => {
+    const { category, price } = transactions;
+    if (!total[category]) {
+      total[category] = price;
+    }
+    else {
+      total[category] += price;
+    }
+  });
+  Object.keys(total).forEach((category) =>{
+    result.push({category, totalSpent : total[category]});
+  });
+  return result;
 }
 
+
 module.exports = calculateTotalSpentByCategory;
+
+// const totals = {};
+// transactions.forEach((transaction) => {
+//   const { category, price } = transaction;
+//   if (!totals[category]) {
+//     totals[category] = price;
+//   } else {
+//     totals[category] += price;
+//   }
+// });
+
+// const result = [];
+// Object.keys(totals).forEach((category) => {
+//   result.push({ category: category, totalSpent: totals[category] });
+// });
+// console.log(Object.keys(totals))
+// return result;
